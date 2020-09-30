@@ -1,4 +1,5 @@
 import React from 'react';
+import './SeasonDisplay.css'
 
 //month from 0 to 11 (12 month)
 const getSeason = (lat, month) => {
@@ -9,15 +10,31 @@ const getSeason = (lat, month) => {
   }
 }
 
+const seasonConfig = {
+  'autumn-winter': {
+    text: 'Brr, it\'s chilly',
+    iconName: 'snowflake'
+  },
+  'spring-summer': {
+    text: 'Let\'s hit the beach',
+    iconName: 'sun'
+  }
+}
+
 //component
 const SeasonDisplay = (props) => {
   const season = getSeason(props.latitude, new Date().getMonth())
-  const text = season === 'autumn-winter' ? 'Brr, it\'s chilly' : 'Let\'s hit the beach'
+  //refactoring
+  // const text = season === 'autumn-winter' ? 'Brr, it\'s chilly' : 'Let\'s hit the beach'
+  // const icon = season === 'autumn-winter' ? 'snowflake' : 'sun'
+  const {text, iconName} = seasonConfig[season]
   
   return (
-    <div>
+    <div className={`season-display ${season}`}>
+      <i className={`${iconName} outline icon massive`} />
       <h1>Now season is: {season} </h1>
       <h2>{text}</h2>
+      <i className={`${iconName} outline icon massive`} />
     </div>
   );
 };
