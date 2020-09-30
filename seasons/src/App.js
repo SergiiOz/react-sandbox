@@ -38,7 +38,7 @@ class App extends React.Component {
           <div>Error: {this.state.errorMessage}</div>
         )}
         {!this.state.errorMessage && this.state.latitude && (
-          <div>Latitude: {this.state.latitude}</div>
+          <SeasonDisplay latitude={this.state.latitude}/>
         )}
         {!this.state.errorMessage && !this.state.latitude && (
           <div>Loading...</div>
