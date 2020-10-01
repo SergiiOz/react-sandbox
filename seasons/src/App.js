@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import SeasonDisplay from './components/SeasonDisplay';
+import Spiner from './components/Spiner';
 
 class App extends React.Component {
   constructor(props) {
@@ -38,12 +39,11 @@ class App extends React.Component {
           <div>Error: {this.state.errorMessage}</div>
         )}
         {!this.state.errorMessage && this.state.latitude && (
-          <SeasonDisplay latitude={this.state.latitude}/>
+          <SeasonDisplay latitude={this.state.latitude} />
         )}
         {!this.state.errorMessage && !this.state.latitude && (
-          <div>Loading...</div>
+          <Spiner text="Please, allow access to your Geolocation!" />
         )}
-        {/* <SeasonDisplay /> */}
       </div>
     );
   }

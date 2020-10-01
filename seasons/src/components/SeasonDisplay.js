@@ -1,40 +1,42 @@
 import React from 'react';
-import './SeasonDisplay.css'
+import './SeasonDisplay.css';
 
 //month from 0 to 11 (12 month)
 const getSeason = (lat, month) => {
-  if(month > 1 && month < 8) {
-    return (lat > 0 ? 'spring-summer' : 'autumn-winter')
+  if (month > 1 && month < 8) {
+    return lat > 0 ? 'summer' : 'winter';
   } else {
-    return (lat > 0 ? 'autumn-winter' : 'spring-summer')
+    return lat > 0 ? 'winter' : 'summer';
   }
-}
+};
 
 const seasonConfig = {
-  'autumn-winter': {
-    text: 'Brr, it\'s chilly',
-    iconName: 'snowflake'
+  winter: {
+    text: "Brr, it's chilly",
+    iconName: 'snowflake',
   },
-  'spring-summer': {
-    text: 'Let\'s hit the beach',
-    iconName: 'sun'
-  }
-}
+  summer: {
+    text: "Let's hit the beach",
+    iconName: 'sun',
+  },
+};
 
 //component
 const SeasonDisplay = (props) => {
-  const season = getSeason(props.latitude, new Date().getMonth())
+  const season = getSeason(props.latitude, new Date().getMonth());
   //refactoring
   // const text = season === 'autumn-winter' ? 'Brr, it\'s chilly' : 'Let\'s hit the beach'
   // const icon = season === 'autumn-winter' ? 'snowflake' : 'sun'
-  const {text, iconName} = seasonConfig[season]
-  
+  const { text, iconName } = seasonConfig[season];
+
   return (
     <div className={`season-display ${season}`}>
-      <i className={`${iconName} outline icon massive`} />
-      <h1>Now season is: {season} </h1>
-      <h2>{text}</h2>
-      <i className={`${iconName} outline icon massive`} />
+      <i className={`icon-left ${iconName} outline icon massive`} />
+      <div>
+        <h2>Now season is: {season} </h2>
+        <h1>{text}</h1>
+      </div>
+      <i className={`icon-right ${iconName} outline icon massive`} />
     </div>
   );
 };
