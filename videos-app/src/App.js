@@ -12,10 +12,18 @@ class App extends React.Component {
     selectedVideo: null,
   };
 
+  componentDidMount() {
+    //default request
+    this.onSearchFormSubmit('cars');
+  }
+
   //send request to api and set video list after response
   onSearchFormSubmit = (textForm) => {
     youtubeAPI.getVideos(textForm).then((response) => {
-      this.setState({ videos: response.data.items });
+      this.setState({
+        videos: response.data.items,
+        selectedVideo: response.data.items[0],
+      });
     });
   };
 
@@ -31,15 +39,18 @@ class App extends React.Component {
     return (
       <div className="ui container" style={{ marginTop: '10px' }}>
         <SearchBar onSearchFormSubmit={this.onSearchFormSubmit} />
-        <div>
-          <VideoDetail selectedVideo={this.state.selectedVideo} />
 
-          <VideoList
-            videos={this.state.videos}
-            onVideoSelect={this.onVideoSelect}
-          />
-          <div>
-            {this.state.selectedVideo && this.state.selectedVideo.snippet.title}
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideoDetail selectedVideo={this.state.selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VideoList
+                videos={this.state.videos}
+                onVideoSelect={this.onVideoSelect}
+              />
+            </div>
           </div>
         </div>
       </div>
