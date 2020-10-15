@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Accordion from './components/Accordion';
+import SearchBar from './components/SearchBar';
 
 const items = [
   {
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <div>
       <h1>Widgets</h1>
+      <SearchBar />
       <Accordion items={items} />
     </div>
   );

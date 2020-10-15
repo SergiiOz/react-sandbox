@@ -5,9 +5,19 @@ const instanceAxios = axios.create({
 });
 
 export const wikipediaApi = {
-  getSearchResponse(textSearch) {
+  getSearchResponse(searchText) {
     return instanceAxios.get(
-      `?action=query&list=search&format=json&srsearch=${textSearch}`
+      '',
+      {
+        params: {
+          action: 'query',
+          list: 'search',
+          origin: '*',
+          format: 'json',
+          srsearch: searchText,
+        },
+      }
+      // `?action=query&list=search&format=json&origin=*&srsearch=${searchText}`
     );
   },
 };
