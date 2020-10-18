@@ -1,27 +1,24 @@
+//OLD SearchBar -> refuctoring to SearchBar
+// Line 41:6:  React Hook useEffect has a missing dependency: 'responseResults.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
 import React, { useEffect, useState } from 'react';
 import { wikipediaApi } from '../api/wikipedia';
 
 const SearchBar = (props) => {
   const [searchText, setSearchText] = useState('testing');
-  const [debouncedText, setDebouncedText] = useState(searchText);
+  // const [requestText, setRequestText] = useState('programming');
   const [responseResults, setResponseResults] = useState([]);
 
   const onSetSearchText = (event) => {
     setSearchText(event.target.value);
   };
 
-  //if don't typing more then 1sec in input, will be change debouncedText
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setDebouncedText(searchText);
-    }, 1000);
+  // const onFormSubmit = (event) => {
+  //   event.preventDefault();
+  //   setRequestText(searchText);
+  //   setSearchText('');
+  // };
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [searchText]);
-
-  //when is changed debouncedText -> send request to API
   useEffect(() => {
     const onGetResult = async (text) => {
       const result = await wikipediaApi.getSearchResponse(text);
@@ -29,8 +26,22 @@ const SearchBar = (props) => {
       setResponseResults(result.data.query.search);
     };
 
-    onGetResult(debouncedText);
-  }, [debouncedText]);
+    if (searchText && !responseResults.length) {
+      onGetResult(searchText);
+    } else {
+      //call function
+      //if don't typing more then 1sec in input, will be request to API
+      const timeoutId = setTimeout(() => {
+        if (searchText) {
+          onGetResult(searchText);
+        }
+      }, 1000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [searchText]);
 
   const renderedList = responseResults.map((result) => {
     return (
@@ -56,10 +67,12 @@ const SearchBar = (props) => {
   return (
     <div>
       <div className="ui form">
+        {/* <form onSubmit={onFormSubmit}> */}
         <div className="ui field">
           <label>Enter Search Term</label>
           <input value={searchText} onChange={onSetSearchText} />
         </div>
+        {/* </form> */}
       </div>
       <div className="ui celled list">{renderedList}</div>
     </div>

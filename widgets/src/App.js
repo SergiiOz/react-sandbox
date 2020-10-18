@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Accordion from './components/Accordion';
 import SearchBar from './components/SearchBar';
 
@@ -22,7 +22,7 @@ const App = () => {
     <div>
       <h1>Widgets</h1>
       <SearchBar />
-      <Accordion items={items} />
+      {/* <Accordion items={items} /> */}
     </div>
   );
 };
