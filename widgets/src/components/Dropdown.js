@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
+  const refForm = useRef();
+
+  //close dropdawn if we click outside dropdown
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      // console.log(event.target);
+      //check if we clik into DOM el form
+      if (refForm.current.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.body.addEventListener('click', onBodyClick);
+
+    //if element with refForm will be remove from DOM -> remove eventListener
+    return () => {
+      document.body.removeEventListener('click', onBodyClick);
+    };
+  }, []);
 
   // console.log(options);
   const renderedOptions = options.map((option, index) => {
@@ -22,7 +41,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   });
 
   return (
-    <div className="ui form">
+    <div ref={refForm} className="ui form">
       <div className="ui field">
         <label className="ui label">Selected a Color</label>
         <div
