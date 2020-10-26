@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Dropdown from './components/Dropdown';
 import SearchBar from './components/SearchBar';
+import Translate from './components/Translate';
+import Header from './components/Header';
+import Route from './components/Route';
 
 const items = [
   {
@@ -35,16 +38,55 @@ const options = [
 
 const App = () => {
   const [selected, setSelected] = useState(options[0]);
+
+  // //NAVIGATION
+  // const showWidgets = () => {
+  //   const pathFromUrl = window.location.pathname;
+  //   switch (pathFromUrl) {
+  //     case '/':
+  //       return <Accordion items={items} />;
+
+  //     case '/list':
+  //       return <SearchBar />;
+
+  //     case '/dropdown':
+  //       return (
+  //         <Dropdown
+  //           options={options}
+  //           selected={selected}
+  //           onSelectedChange={setSelected}
+  //         />
+  //       );
+
+  //     case '/translate':
+  //       return <Translate />;
+
+  //     default:
+  //       return <div>Don't have page...</div>;
+  //   }
+  // };
   return (
     <div>
-      <h1>Widgets</h1>
-      {/* <SearchBar /> */}
-      {/* <Accordion items={items} /> */}
-      <Dropdown
-        options={options}
-        selected={selected}
-        onSelectedChange={setSelected}
-      />
+      <Header />
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+
+      <Route path="/list">
+        <SearchBar />
+      </Route>
+
+      <Route path="/dropdown">
+        <Dropdown
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      </Route>
+
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };
