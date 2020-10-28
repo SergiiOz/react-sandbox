@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //work only on lacalhost:3000
-// const KEY = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM';
+const KEY = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM';
 
 const instanceAxios = axios.create({
   baseURL: `https://translation.googleapis.com/language/translate/v2`,
