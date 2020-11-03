@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { youtubeAPI } from "./api/youtube";
+import React, { useEffect, useState } from 'react';
+// import { youtubeAPI } from './api/youtube';
 
-import "./App.css";
-import SearchBar from "./components/SearchBar";
-import VideoDetail from "./components/VideoDetail";
-import VideoList from "./components/VideoList";
+import './App.css';
+import SearchBar from './components/SearchBar';
+import VideoDetail from './components/VideoDetail';
+import VideoList from './components/VideoList';
+import useVideo from './hooks.js/useVideo';
 
 const App = () => {
-  const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  //send request to api and set video list after response
-  const onSearchFormSubmit = (textForm) => {
-    youtubeAPI.getVideos(textForm).then((response) => {
-      setVideos(response.data.items);
-      setSelectedVideo(response.data.items[0]);
-    });
-  };
-
-  const onVideoSelect = (video) => {
-    // console.log('Selected video', video);
-    setSelectedVideo(video);
-    console.log(selectedVideo);
-  };
+  //custom hooks (fetch data from API)
+  //Destructuring array 'videos' and function 'onSearch'
+  const [videos, onSearch] = useVideo('cars');
 
   useEffect(() => {
-    //default request
-    onSearchFormSubmit("cars");
-  }, []);
+    //set default selected video
+    setSelectedVideo(videos[0]);
+  }, [videos]);
+
+  // const [videos, setVideos] = useState([]);
+
+  // //send request to api and set video list after response
+  // const onSearchFormSubmit = (textForm) => {
+  //   youtubeAPI.getVideos(textForm).then((response) => {
+  //     setVideos(response.data.items);
+  //     setSelectedVideo(response.data.items[0]);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   //default request
+  //   onSearchFormSubmit('cars');
+  // }, []);
 
   return (
-    <div className="ui container" style={{ marginTop: "10px" }}>
-      <SearchBar onSearchFormSubmit={onSearchFormSubmit} />
+    <div className="ui container" style={{ marginTop: '10px' }}>
+      <SearchBar onSearchFormSubmit={onSearch} />
 
       <div className="ui grid">
         <div className="ui row">
@@ -39,7 +44,7 @@ const App = () => {
             <VideoDetail selectedVideo={selectedVideo} />
           </div>
           <div className="five wide column">
-            <VideoList videos={videos} onVideoSelect={onVideoSelect} />
+            <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
           </div>
         </div>
       </div>
