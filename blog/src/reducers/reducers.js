@@ -1,6 +1,13 @@
-import { combineReducers } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { postsReducer } from './postsReducer';
+import { usersReducer } from './usersReducer';
 
-export default combineReducers({
-  //boilerplate for start project without error
-  replaceMe: () => 'replace code reducers',
+const rootReducers = combineReducers({
+  posts: postsReducer,
+  users: usersReducer,
 });
+
+const store = createStore(rootReducers, applyMiddleware(thunk));
+
+export default store;
