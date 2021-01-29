@@ -1,0 +1,14 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+
+  &__item {
+    margin-left: 30px;
+  }
+}

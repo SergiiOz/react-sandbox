@@ -1,11 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { fetchStreams } from '../../actions/actionsCreator';
+import { connect } from 'react-redux';
 
-const StreamList = () => {
+class StreamList extends React.Component {
+  componentDidMount() {
+    this.props.getListStreams();
+  }
+
+  render() {
     return (
+      <div>
+        <h2>Stream List</h2>
         <div>
-            <h2>Stream List</h2>
+          <Link to="/streams/details">Stream Details</Link>
         </div>
-    )
+      </div>
+    );
+  }
 }
 
-export default StreamList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getListStreams: () => dispatch(fetchStreams()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(StreamList);
