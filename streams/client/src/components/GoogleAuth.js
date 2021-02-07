@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './GoogleAuth.module.scss';
 import { connect } from 'react-redux';
 import { signIn, signOut } from './../actions/actionsCreator';
+import Button from '../components/button/Button';
 
 class GoogleAuth extends React.Component {
   //Authentical with Google Auth
@@ -10,7 +10,8 @@ class GoogleAuth extends React.Component {
     window.gapi.load('client:auth2', () => {
       window.gapi.client
         .init({
-          clientId: '', // <- ***CREDENTIAL insert into empty ''
+          clientId:
+            '37737671711-cf4kkadmrftdegeiv1se0tvmprhep8l5.apps.googleusercontent.com', // <- ***CREDENTIAL insert into empty ''
           scope: 'email',
         })
         .then(() => {
@@ -51,28 +52,22 @@ class GoogleAuth extends React.Component {
     } else if (this.props.isSignedIn) {
       return (
         //BUTTON SIGN OUT
-        <button
-          className={styles.buttonAuth}
-          onClick={
-            this.onSignOutClick
-            // window.gapi.auth2.getAuthInstance().signOut();
-          }
-        >
-          Sign Out
-        </button>
+        <Button
+          nameButton={'Sign Out'}
+          onButtonClick={this.onSignOutClick}
+          // window.gapi.auth2.getAuthInstance().signOut();
+          styleButton={{ backgroundColor: '#e98dccfe' }}
+        />
       );
     } else {
       return (
         //BUTTON SIGN IN
-        <button
-          className={styles.buttonAuth}
-          onClick={
-            this.onSignInClick
-            // window.gapi.auth2.getAuthInstance().signIn();
-          }
-        >
-          Sign In with Google
-        </button>
+        <Button
+          nameButton={'Sign In with Google'}
+          onButtonClick={this.onSignInClick}
+          // window.gapi.auth2.getAuthInstance().signIn();
+          styleButton={{ backgroundColor: '#e98dccfe' }}
+        />
       );
     }
   }

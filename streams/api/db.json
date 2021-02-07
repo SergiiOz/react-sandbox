@@ -9,6 +9,12 @@
       "title": "Second Streams",
       "description": "My test second stream",
       "id": 2
+    },
+    {
+      "title": "My Third stream",
+      "description": "This is my third stream for test",
+      "userId": "110674329958105857964",
+      "id": 3
     }
   ]
 }
