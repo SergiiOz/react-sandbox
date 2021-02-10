@@ -10,7 +10,7 @@ class StreamList extends React.Component {
   }
 
   renderAdmin = (stream) => {
-    // console.log('stream id', stream.id, 'currentId', this.props.currentUserId);
+    // console.log("stream id", stream.id, "currentId", this.props.currentUserId);
     if (stream.userId === this.props.currentUserId) {
       return (
         <div>
@@ -31,7 +31,12 @@ class StreamList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div>
-          <Link to="/streams/new">Create Stream</Link>
+          <Link to="/streams/new">
+            <Button
+              nameButton="Create Stream"
+              styleButton={{ backgroundColor: 'yellow' }}
+            />
+          </Link>
         </div>
       );
     }

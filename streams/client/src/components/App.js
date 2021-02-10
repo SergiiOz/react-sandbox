@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import styles from './App.module.scss';
 import StreamCreate from './streams/StreamCreate';
 import StreamEdit from './streams/StreamEdit';
@@ -7,11 +7,13 @@ import StreamShow from './streams/StreamShow';
 import StreamDelete from './streams/StreamDelete';
 import StreamDetails from './streams/StreamDetails';
 import Header from './Header';
+import history from '../history';
 
 const App = () => {
   return (
     <div className={styles.container}>
-      <BrowserRouter>
+      {/* for create our history object we change BrowserRouter to Router */}
+      <Router history={history}>
         <div>
           <Header />
           <hr />
@@ -22,7 +24,7 @@ const App = () => {
           <Route path="/streams/show" exact component={StreamShow} />
           <Route path="/streams/details" exact component={StreamDetails} />
         </div>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };

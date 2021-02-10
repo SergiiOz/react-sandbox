@@ -1,4 +1,5 @@
 import streams from '../apis/streams';
+import history from '../history';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -33,6 +34,8 @@ export const createStream = (formValue) => {
       type: CREATE_STREAM,
       payload: response.data,
     });
+    //redirect to '/' after created Stream
+    history.push('/');
   };
 };
 

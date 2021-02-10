@@ -15,6 +15,18 @@
       "description": "This is my third stream for test",
       "userId": "110674329958105857964",
       "id": 3
+    },
+    {
+      "title": "Unexpected behavior",
+      "description": "Didn't expect that",
+      "userId": "110674329958105857964",
+      "id": 4
+    },
+    {
+      "title": "Expected behavior",
+      "description": "Create history object",
+      "userId": "110674329958105857964",
+      "id": 5
     }
   ]
 }
