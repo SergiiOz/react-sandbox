@@ -4,6 +4,8 @@ import { fetchStreams } from '../../actions/actionsCreator';
 import { connect } from 'react-redux';
 import Button from '../button/Button';
 
+import styles from './StreamList.module.scss';
+
 class StreamList extends React.Component {
   componentDidMount() {
     this.props.getListStreams();
@@ -14,10 +16,12 @@ class StreamList extends React.Component {
     if (stream.userId === this.props.currentUserId) {
       return (
         <div>
-          <Button
-            nameButton="EDIT"
-            styleButton={{ backgroundColor: 'lightblue' }}
-          />
+          <Link to={`/streams/edit/${stream.id}`}>
+            <Button
+              nameButton="EDIT"
+              styleButton={{ backgroundColor: 'lightblue' }}
+            />
+          </Link>
           <Button
             nameButton="DELETE"
             styleButton={{ backgroundColor: 'lightcoral' }}
@@ -46,9 +50,14 @@ class StreamList extends React.Component {
     return this.props.streams.map((stream) => {
       return (
         <li key={stream.id}>
-          <h4>{stream.title}</h4>
-          <div>{stream.description}</div>
-          <div>{this.renderAdmin(stream)}</div>
+          <div className={styles.listCard}>
+            <div>
+              <h4>{stream.title}</h4>
+              <div>{stream.description}</div>
+            </div>
+            <div>{this.renderAdmin(stream)}</div>
+          </div>
+          <hr />
         </li>
       );
     });
@@ -59,7 +68,6 @@ class StreamList extends React.Component {
       <div>
         <h2>Stream List</h2>
         <ol>{this.renderList()}</ol>
-        <hr />
         <div>{this.renderCreate()}</div>
         <br />
         <div>
