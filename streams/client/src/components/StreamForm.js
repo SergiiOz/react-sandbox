@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStream } from '../actions/actionsCreator';
 import { Field, reduxForm } from 'redux-form';
 
-import styles from './CreateStreamForm.module.scss';
+import styles from './StreamForm.module.scss';
 
-class CreateStreamForm extends React.Component {
+class StreamForm extends React.Component {
   // RENDER ERROR
   renderError({ touched, error }) {
     if (touched && error) {
@@ -41,7 +39,8 @@ class CreateStreamForm extends React.Component {
   };
 
   onCustomSubmit = (formValue) => {
-    this.props.createNewStream(formValue);
+    //this function is get from parents component
+    this.props.onSubmit(formValue);
   };
 
   render() {
@@ -85,15 +84,7 @@ const validate = (value) => {
   return errors;
 };
 
-const formWrapper = reduxForm({
-  form: 'createStream',
+export default reduxForm({
+  form: 'streamForm',
   validate: validate,
-})(CreateStreamForm);
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createNewStream: (formValue) => dispatch(createStream(formValue)),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(formWrapper);
+})(StreamForm);
