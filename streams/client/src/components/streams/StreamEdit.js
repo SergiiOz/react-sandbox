@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchStream } from '../../actions/actionsCreator';
+import { fetchStream, editStream } from '../../actions/actionsCreator';
+import StreamForm from '../StreamForm';
 
 class StreamEdit extends React.Component {
   componentDidMount() {
     this.props.getEditStream(this.props.match.params.id);
   }
+
+  //need add editStreamAction and id
+  onSubmit = (formValue) => {
+    console.log(formValue);
+  };
 
   render() {
     if (!this.props.editStream) {
@@ -17,8 +23,14 @@ class StreamEdit extends React.Component {
     return (
       <div>
         <h2>Stream Edit</h2>
-        <h4>{title}</h4>
-        <p>{description}</p>
+        <StreamForm
+          //initialValues special name properties redux form - for pass value into an input
+          initialValues={{
+            title: title,
+            description: description,
+          }}
+          onSubmit={this.onSubmit}
+        />
       </div>
     );
   }
@@ -27,7 +39,7 @@ class StreamEdit extends React.Component {
 //ownProps - it's props from component StreamEdit
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('ownProps', ownProps);
+  // console.log('ownProps', ownProps);
   return {
     editStream: state.streams[ownProps.match.params.id],
   };
@@ -36,6 +48,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getEditStream: (id) => dispatch(fetchStream(id)),
+    editStreamAction: (id, formValue) => dispatch(editStream(id, formValue)),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(StreamEdit);

@@ -17,7 +17,7 @@ class StreamForm extends React.Component {
 
   //RENDER INPUT
   renderInput = ({ input, label, type, meta }) => {
-    console.log(meta);
+    // console.log(meta);
     return (
       <div>
         <label>{label}</label>
