@@ -12,7 +12,7 @@
     },
     {
       "title": "My Third stream",
-      "description": "This is my third stream for test",
+      "description": "Change with Edit and Patch request",
       "userId": "110674329958105857964",
       "id": 3
     },
@@ -24,8 +24,7 @@
     },
     {
       "title": "Expected behavior",
-      "description": "Create history object",
-      "userId": "110674329958105857964",
+      "description": "Change with EDIT",
       "id": 5
     },
     {

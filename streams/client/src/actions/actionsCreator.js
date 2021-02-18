@@ -66,12 +66,14 @@ export const fetchStream = (id) => {
 //EDIT STEAM
 export const editStream = (id, formValue) => {
   return async (dispatch) => {
-    const response = await streams.put(`/streams/${id}`, formValue);
+    const response = await streams.patch(`/streams/${id}`, formValue);
 
     dispatch({
       type: EDIT_STREAM,
       payload: response.data,
     });
+    //redirect to '/' after created Stream
+    history.push('/');
   };
 };
 

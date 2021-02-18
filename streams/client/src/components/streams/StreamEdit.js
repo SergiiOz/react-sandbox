@@ -10,7 +10,7 @@ class StreamEdit extends React.Component {
 
   //need add editStreamAction and id
   onSubmit = (formValue) => {
-    console.log(formValue);
+    this.props.editStreamAction(this.props.match.params.id, formValue);
   };
 
   render() {
@@ -29,6 +29,9 @@ class StreamEdit extends React.Component {
             title: title,
             description: description,
           }}
+          //anothey way, with lodash
+          //initialValues{_.pick(this.props.editStream, 'title', 'description')}
+
           onSubmit={this.onSubmit}
         />
       </div>
