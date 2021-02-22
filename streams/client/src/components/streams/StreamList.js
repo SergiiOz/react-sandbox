@@ -22,10 +22,12 @@ class StreamList extends React.Component {
               styleButton={{ backgroundColor: 'lightblue' }}
             />
           </Link>
-          <Button
-            nameButton="DELETE"
-            styleButton={{ backgroundColor: 'lightcoral' }}
-          />
+          <Link to={`/streams/delete/${stream.id}`}>
+            <Button
+              nameButton="DELETE"
+              styleButton={{ backgroundColor: 'lightcoral' }}
+            />
+          </Link>
         </div>
       );
     }

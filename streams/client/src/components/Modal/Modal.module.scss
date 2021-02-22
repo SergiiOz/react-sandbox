@@ -1,4 +1,4 @@
-.modal {
+.modalWrapper {
   position: fixed;
   top: 0;
   right: 0;
@@ -11,9 +11,14 @@
   opacity: 0.9;
 }
 
-.modalBody {
+.body {
   max-width: 600px;
   padding: 20px;
   border-radius: 5px;
   background-color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
 }

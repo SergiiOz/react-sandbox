@@ -2,15 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.scss';
 
-const Modal = () => {
+const Modal = (props) => {
   return ReactDOM.createPortal(
-    <div className={styles.modal}>
-      <div className={styles.modalBody}>
-        <h3>Modal Window</h3>
-        <div>Lorem Ipsum is simply dummy text of the printing ...</div>
+    <div
+      // if click on background - modal window off and redirect to '/'
+      onClick={props.onDismiss}
+      className={styles.modalWrapper}
+    >
+      <div
+        //stopPropagation() - stop bubbling
+        onClick={(e) => e.stopPropagation()}
+        className={styles.body}
+      >
+        <h3 className={styles.title}>{props.title}</h3>
+        <div className={styles.content}>{props.description}</div>
+        <div className={styles.actions}>{props.actions}</div>
       </div>
     </div>,
-    document.querySelector('#modal')
+    document.querySelector('#modal-root')
   );
 };
 
