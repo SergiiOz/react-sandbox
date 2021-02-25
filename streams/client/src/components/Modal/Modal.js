@@ -15,7 +15,7 @@ const Modal = (props) => {
         className={styles.body}
       >
         <h3 className={styles.title}>{props.title}</h3>
-        <div className={styles.content}>{props.description}</div>
+        <div className={styles.content}>{props.content}</div>
         <div className={styles.actions}>{props.actions}</div>
       </div>
     </div>,

@@ -86,5 +86,7 @@ export const deleteStream = (id) => {
       type: DELETE_STREAM,
       payload: id,
     });
+    //redirect to '/' after created Stream
+    history.push('/');
   };
 };
