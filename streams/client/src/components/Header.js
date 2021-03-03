@@ -12,7 +12,7 @@ const Header = () => {
 
       <ul className={styles.list}>
         <li className={styles.list__item}>
-          <Link to="/streams/show"> All Streams</Link>
+          <Link to="/"> All Streams</Link>
         </li>
         <li className={styles.list__item}>
           <Link to="/">

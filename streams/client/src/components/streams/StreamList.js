@@ -54,7 +54,9 @@ class StreamList extends React.Component {
         <li key={stream.id}>
           <div className={styles.listCard}>
             <div>
-              <h4>{stream.title}</h4>
+              <h4>
+                <Link to={`/streams/${stream.id}`}>{stream.title}</Link>
+              </h4>
               <div>{stream.description}</div>
             </div>
             <div>{this.renderAdmin(stream)}</div>

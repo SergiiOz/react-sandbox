@@ -1,4 +1,4 @@
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import styles from './App.module.scss';
 import StreamCreate from './streams/StreamCreate';
 import StreamEdit from './streams/StreamEdit';
@@ -17,12 +17,14 @@ const App = () => {
         <div>
           <Header />
           <hr />
-          <Route path="/" exact component={StreamList} />
-          <Route path="/streams/new" exact component={StreamCreate} />
-          <Route path="/streams/edit/:id" exact component={StreamEdit} />
-          <Route path="/streams/delete/:id" exact component={StreamDelete} />
-          <Route path="/streams/show" exact component={StreamShow} />
-          <Route path="/streams/details" exact component={StreamDetails} />
+          <Switch>
+            <Route path="/" exact component={StreamList} />
+            <Route path="/streams/new" exact component={StreamCreate} />
+            <Route path="/streams/edit/:id" exact component={StreamEdit} />
+            <Route path="/streams/delete/:id" exact component={StreamDelete} />
+            <Route path="/streams/details" exact component={StreamDetails} />
+            <Route path="/streams/:id" exact component={StreamShow} />
+          </Switch>
         </div>
       </Router>
     </div>
